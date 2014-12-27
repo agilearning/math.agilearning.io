@@ -1,5 +1,16 @@
 @MathProblems = new Mongo.Collection "mathProblems"
 @MathSolutions = new Mongo.Collection "mathSolutions"
+@MathSolutionScores = new Mongo.Collection "mathSolutionScores"
+
+@MathSolutionScoresSchema = new SimpleSchema
+  solutionId:
+    type: String
+  score:
+    type: Number
+    allowedValues: [-5..5]
+    defaultValue: 0
+    label: "Give a Score"
+
 
 @MathProblemsSchema = new SimpleSchema
   problem:
@@ -56,4 +67,16 @@ Meteor.methods
     solutionData.userId = user._id
 
     MathSolutions.insert solutionData
-    
+
+  "scoreSolution": (scoreData) ->
+    console.log "scoreData = "
+    console.log scoreData
+
+    user = Meteor.user()
+
+    if not user
+      throw new Meteor.Error(401, "You need to login")
+
+    scoreData.userId = user._id
+
+    MathSolutionScores.insert scoreData

@@ -44,6 +44,7 @@ template(name="indexProblemBlock")
         {{problem}}
 
     a.btn.btn-default(href="{{pathFor 'solveProblem' pid=_id}}") Make a Solution
+    a.btn.btn-default(href="{{pathFor 'solutions' pid=_id}}") Watch Solutions
     hr
 
 
@@ -85,4 +86,29 @@ template(name="problemSolver")
     //-     label.control-label {{afFieldLabelText name='problemId'}}
     //-     +afFieldInput name='problemId' value=problemId
     +quickForm id="mathSolution" schema="MathSolutionsSchema" type="method" meteormethod="createSolution" doc=quickFormData  
+    
+
+template(name="solutions")
+  .container
+    hr
+    +mathjax
+      +markdown
+       {{previewProblem}}
+    hr
+    h3 Solutions: 
+    each solutions
+      hr
+
+      +mathjax
+        +markdown
+          {{solution}}
+
+
+      +autoForm id="solutionScore" schema="MathSolutionScoresSchema" type="method" meteormethod="scoreSolution" template="bootstrap3-inline"
+        +afFieldInput name='solutionId' value=_id
+        +afFieldInput name='score'
+        button.btn.btn-primary(type="submit") Give a Score
+        
+      hr
+
     
