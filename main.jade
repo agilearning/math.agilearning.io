@@ -2,16 +2,14 @@ head
   title Agilearning Math
 
 body
-  h2 Agilearning Math 1234
+  hr
+  h2 Try Latex and Markdown
   +tryMarked
 
 template(name="tryMarked")
-  +markdown
-    {{testMarkdown}}
+  textarea.tryIt
+  hr
+  h2 Show:
   +mathjax
-    .test
-      {{testLaTex}}
-  .test
-    +mathjax
-      +markdown
-        {{testMarkdownLatex}}
+    +markdown
+     {{tryIt}}

@@ -1,11 +1,20 @@
+defaultText = "# Ity It!"
+
 if Meteor.isClient
   Template.tryMarked.helpers
-    testMarkdown: "# h1\n## h2\n- l1\n- l2\n"
-    testLaTex: "$$\lim a_n=\lim b_n=\lim c_n$$"
-    testMarkdownLatex: "# h1\n## h2\n- l1 $\lim a_n$\n- l2 $\lim b_n$\n"
+    tryIt: ->
+      Session.get "tryIt"
+  
+  Template.tryMarked.events
+    "change .tryIt": (e,t) ->
+      e.stopPropagation()
+      newTryIt = $(e.target).val()
+      Session.set "tryIt", newTryIt
     
 
   Meteor.startup ->
+    Session.set "tryIt", defaultText
+
     marked.setOptions
       renderer: new marked.Renderer()
       gfm: true
