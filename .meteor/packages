@@ -13,3 +13,4 @@ accounts-ui
 accounts-github
 aldeed:autoform
 mizzao:bootstrap-3
+iron:router
