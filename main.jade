@@ -8,4 +8,10 @@ body
 template(name="tryMarked")
   +markdown
     {{testMarkdown}}
-  
+  +mathjax
+    .test
+      {{testLaTex}}
+  .test
+    +mathjax
+      +markdown
+        {{testMarkdownLatex}}
