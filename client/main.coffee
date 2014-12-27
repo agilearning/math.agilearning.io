@@ -9,6 +9,20 @@ Template.problemPreview.events
     Session.set "previewProblem", newPreview
 
 
+
+Template.problemSolver.helpers
+  previewSolution: ->
+    Session.get "previewSolution"
+
+Template.problemSolver.events
+  "click .previewSolBtn": (e,t) ->
+    e.stopPropagation()
+    
+    newPreview = $("[name='solution']").val()
+    Session.set "previewSolution", newPreview
+
+
+
 # Template.indexProblemsListBlock.rendered = ->
 #   $('.problemsList').masonry
 #     columnWidth: 100
@@ -28,6 +42,7 @@ Template.problemPreview.events
 
 Meteor.startup ->
   Session.set "previewProblem", ""
+  Session.set "previewSolution", ""
 
   marked.setOptions
     renderer: new marked.Renderer()

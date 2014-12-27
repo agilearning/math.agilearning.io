@@ -42,15 +42,18 @@ template(name="indexProblemBlock")
     +mathjax
       +markdown
         {{problem}}
+
+    a.btn.btn-default(href="{{pathFor 'solveProblem' pid=_id}}") Make a Solution
     hr
 
 
 template(name="problemCreator")
-  hr
-  +problemPreview
-  hr
-  +quickForm id="mathProblem" schema="MathProblemsSchema" type="method" meteormethod="createProblem" 
-  hr
+  .container
+    hr
+    +problemPreview
+    hr
+    +quickForm id="mathProblem" schema="MathProblemsSchema" type="method" meteormethod="createProblem" 
+    hr
   
 template(name="problemPreview")
   +mathjax
@@ -59,3 +62,27 @@ template(name="problemPreview")
   
   input.previewBtn.btn.btn-default(value="Preview")
 
+
+
+template(name="problemSolver")
+  .container
+    hr
+    +mathjax
+      +markdown
+       {{previewProblem}}
+    hr
+    h3 Solution:
+    
+    +mathjax
+      +markdown
+       {{previewSolution}}
+
+    input.previewSolBtn.btn.btn-default(value="Preview Solution")
+
+    hr
+    //- +autoForm id="matSolution" schema="MathSolutionsSchema" type="method" meteormethod="createSolution" 
+    //-   .form-group 
+    //-     label.control-label {{afFieldLabelText name='problemId'}}
+    //-     +afFieldInput name='problemId' value=problemId
+    +quickForm id="mathSolution" schema="MathSolutionsSchema" type="method" meteormethod="createSolution" doc=quickFormData  
+    
