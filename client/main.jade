@@ -1,0 +1,23 @@
+head
+  title Agilearning Math
+
+body
+  hr
+  h2 Try Latex and Markdown
+  +loginButtons
+  hr
+  +problemEditor
+
+template(name="problemEditor")
+  hr
+  +mathjax
+    +markdown
+     {{previewProblem}}
+  
+  input.previewBtn.btn.btn-default(value="Preview")
+
+  hr
+  +quickForm id="mathProblem" schema="MathProblemsSchema" type="method" meteormethod="createCourse" template="bootstrap3-inline" label-class="sr-only" afFieldInput-placeholder="schemaLabel"
+  hr
+  
+  
