@@ -13,4 +13,19 @@
     optional: true
   "tags.$": 
     type: String
-   
+
+
+Meteor.methods
+  "createProblem": (problemData) ->
+
+    console.log "problemData = "
+    console.log problemData
+
+    user = Meteor.user()
+
+    if not user
+      throw new Meteor.Error(401, "You need to login")
+
+    problemData.userId = user._id
+
+    MathProblems.insert problemData
