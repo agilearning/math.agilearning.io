@@ -6,18 +6,20 @@ body
   h2 Try Latex and Markdown
   +loginButtons
   hr
-  +problemEditor
+  +problemCreator
 
-template(name="problemEditor")
+template(name="problemCreator")
   hr
+  +problemPreview
+  hr
+  +quickForm id="mathProblem" schema="MathProblemsSchema" type="method" meteormethod="createProblem" 
+  hr
+  
+template(name="problemPreview")
   +mathjax
     +markdown
      {{previewProblem}}
   
   input.previewBtn.btn.btn-default(value="Preview")
 
-  hr
-  +quickForm id="mathProblem" schema="MathProblemsSchema" type="method" meteormethod="createCourse" template="bootstrap3-inline" label-class="sr-only" afFieldInput-placeholder="schemaLabel"
-  hr
-  
   

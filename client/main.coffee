@@ -1,8 +1,8 @@
-Template.problemEditor.helpers
+Template.problemPreview.helpers
   previewProblem: ->
     Session.get "previewProblem"
 
-Template.problemEditor.events
+Template.problemPreview.events
   "click .previewBtn": (e,t) ->
     e.stopPropagation()
     newPreview = $("[name='problem']").val()
